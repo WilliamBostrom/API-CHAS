@@ -1,0 +1,214 @@
+/* Nav */
+.dates-container {
+  z-index: 3;
+  background-color: rgba(179, 179, 179, 0.606);
+  width: 28rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+}
+
+.date_box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  font-size: 1.4rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+/* Cards */
+
+div[contenteditable="true"] {
+  padding: 8px;
+  cursor: text;
+  font-size: 4.6rem;
+
+  border: none;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+#dashboard:focus,
+div[contenteditable="true"]:focus {
+  outline: none;
+  border: none;
+}
+
+#dashboard {
+  font-size: 4.6rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+}
+
+.card_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: rgba(179, 179, 179, 0.585);
+  height: 36rem;
+  width: 28rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+#fast,
+#card_weather {
+  height: 26rem;
+  overflow-x: hidden;
+}
+
+#share-controls {
+  margin-top: 0.5rem;
+}
+
+.card h2 {
+  font-size: 2.4rem;
+  margin-top: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.card_button,
+.card_box,
+.card_box_bigger {
+  background-color: rgba(255, 255, 255, 0.782);
+  width: 24rem;
+  height: 5.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  justify-self: flex-end;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  border: none;
+}
+
+.card_box_bigger {
+  height: 7rem;
+}
+
+.card_button h3 {
+  margin-left: 1rem;
+}
+
+.card_button a {
+  align-self: flex-start;
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.card_add {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.card_delete_icon {
+  cursor: pointer;
+}
+
+#icons {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* Väder */
+.weather-icons {
+  height: 6.5rem;
+  width: 6.5rem;
+}
+
+.current_day {
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.location {
+  width: 60%;
+  height: 90%;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.temp_weather {
+  display: flex;
+  justify-content: space-between;
+}
+
+.temp,
+.weather {
+  padding: 0.3rem;
+  background-color: #ccccccc2;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
+
+.error {
+  display: none;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: rgb(242, 73, 73);
+  font-weight: 600;
+}
+
+/* Anteckningar */
+.card_flex {
+  display: flex;
+  align-items: center;
+}
+
+.card_textarea {
+  height: 80%;
+  width: 90%;
+  border: none;
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  color: black;
+  font-weight: 500;
+  font-family: "Open sans", sans-serif;
+}
+
+.card_textarea:focus {
+  outline: 1px solid grey;
+}
+
+#selected-place {
+  width: 90%;
+  height: 90%;
+  max-width: 90%;
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form2 {
+  justify-self: flex-end;
+}

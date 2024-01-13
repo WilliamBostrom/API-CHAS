@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Joe Doe Dashboard</title>
+  </head>
+  <body id="body">
+    <nav>
+      <div class="dates-container">
+        <div class="date_box">
+          <p class="date_box-time" id="time"><b>10:10</b></p>
+          <p class="date_box-date" id="date">1 april 2024</p>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <section class="cards-container">
+        <div id="dashboard" onclick="makeEditable()">John Doe Dashboard</div>
+        <div class="card_row">
+          <div class="card">
+            <h2>Snabblänkar</h2>
+            <div id="fast">
+              <button href="${element.title}" class="card_button">
+                <div class="card_box_name">
+                  <a href="www.google.com" target="_blank">
+                    <div class="card_flex">
+                      <img
+                        src="https://www.google.com/s2/favicons?domain=$google.com&sz=25"
+                        id="icons"
+                      />
+                      <h3>Google</h3>
+                    </div></a
+                  >
+                </div>
+                <a class="card_delete_icon" id=""
+                  ><img src="./scr/img/minus-circle.svg"
+                /></a>
+              </button>
+            </div>
+            <div class="card_search_container">
+              <form class="form_1" action="" onsubmit="return false">
+                <input class="card_add" placeholder="Lägg till länk" />
+                <button class="card_button_add">
+                  <img
+                    src="./scr/img/add-circle.svg"
+                    alt="Lägg till i snabba länkar"
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2><span id="city">Dagen</span>s väder</h2>
+            <p class="error"></p>
+            <div id="card_weather">
+              <!--    <section>
+                <div class="card_box_bigger container">
+                  <div class="icon">
+                    <img src="" alt="" class="weather-icon" />
+                  </div>
+                  <div class="location">
+                    <h3 class="city">IDAG</h3>
+                    <div class="temp">-5<span>°C</span></div>
+                  </div>
+                  <div class="current">
+                    <div class="city">Stockholm, SE</div>
+                    <div class="weather">Sol</div>
+                  </div>
+                </div>
+              </section> -->
+              <section id="tomorrow"></section>
+
+              <!--       <section>
+                <div class="card_box_bigger container">
+                  <div class="icon">
+                    <img src="" alt="" class="weather-icon" />
+                  </div>
+                  <div class="location">
+                    <h3 class="city">Fredag</h3>
+                    <div class="temp">-5<span>°C</span></div>
+                  </div>
+                  <div class="current">
+                    <div class="city">Stockholm, SE</div>
+                    <div class="weather">Sol</div>
+                  </div>
+                </div>
+              </section> -->
+            </div>
+
+            <form class="form_2" action="" onsubmit="return false">
+              <div class="input-container">
+                <input type="text" class="search" placeholder="Sök stad" />
+                <button type="submit" class="btn">
+                  <img src="/scr/img/add-search-btn.svg" alt="Sök efter stad" />
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- Ta bort från mp3 för att starta gps igen -->
+          <section class="card">
+            <!-- För mp3 spelare -->
+            <div class="mp3-container">
+              <div class="mp3-padding">
+                <div class="mp3-display-loading">
+                  <div class="mp3-display">
+                    <div class="mp3-display-top">
+                      <div class="mp3-nav">
+                        <p class="mp3-channeltype"></p>
+                        <span class="mp3-time"></span>
+                      </div>
+                      <img
+                        class="mp3-img"
+                        src="/scr/img/bkgimg.jpg"
+                        alt=""
+                        width="100px"
+                      />
+                      <h3 class="radio-name">Radio</h3>
+                    </div>
+                    <div class="mp3-display-bottom">
+                      <div class="mp3-channel">
+                        <p>Radio är en station</p>
+                        <div class="slider_container">
+                          <img src="" alt="vol-up" />
+                          <input
+                            type="range"
+                            min="1"
+                            max="100"
+                            value="99"
+                            class="volume_slider"
+                            onchange="setVolume()"
+                          />
+                          <img src="" alt="vol-down" srcset="" />
+                        </div>
+                      </div>
+                      <audio src="">hej</audio>
+                    </div>
+                  </div>
+                  <div class="loader">
+                    <p>Loading...</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mp3-container-bottom">
+                <div class="mp3-buttons-container">
+                  <div class="mp3-buttons">
+                    <button class="btnM volume-up">
+                      <img class="btn-svg2" src="/scr/img/plus.svg" alt="" />
+                    </button>
+                    <div class="center-btns">
+                      <button class="btnM prev" id="prevBtn">
+                        <img class="btn-svg" src="/scr/img/prev.svg" alt="" />
+                      </button>
+                      <div class="start-paus-btn">
+                        <button
+                          class="start-mp3"
+                          onclick="playpauseRadio()"
+                          disabled
+                        >
+                          <img
+                            class="btn-start-radio"
+                            src="/scr/img/play.svg"
+                            alt=""
+                          />
+                        </button>
+                      </div>
+                      <button class="btnM next" id="nextBtn">
+                        <img class="btn-svg" src="/scr/img/next.svg" alt="" />
+                      </button>
+                    </div>
+                    <button class="btnM volume-down">
+                      <img class="btn-svg2" src="/scr/img/minus.svg" alt="" />
+                    </button>
+                  </div>
+                </div>
+                <button class="btn-onoff">
+                  <img src="/scr/img/onoff.svg" alt="" />
+                </button>
+              </div>
+            </div>
+
+            <!--  <h2>Dela din plats</h2>
+
+            <section id="place-data">
+              <button id="locate-btn">Hämta din plats</button>
+              <form>
+              // Js kod här
+              </form>
+              <p class="h2"></p>
+            </section>
+            <section id="share-controls">
+              <input id="share-link" type="text" readonly value="Få en länk" />
+              <button id="share-btn" disabled>Dela plats</button>
+            </section>
+            <section id="selected-place">
+              <div id="map">
+                <p>Hämta din plats för att få din position</p>
+              </div>
+            </section> -->
+          </section>
+          <section class="card">
+            <h2>Anteckningar</h2>
+            <textarea class="card_textarea"> </textarea>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="random-container">
+        <form action="" class="random-form">
+          <input
+            type="text"
+            placeholder="Skriv önskat tema"
+            id="bakgrundsTema"
+            class="input_add"
+          />
+          <button class="randomImagesButton">
+            <div class="random_btn_center">
+              <img
+                class="random_img"
+                src="./scr/img/add-refresh.svg"
+                alt="refresh knapp"
+              />
+              <p>Bakgrund</p>
+            </div>
+          </button>
+        </form>
+      </div>
+    </footer>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
