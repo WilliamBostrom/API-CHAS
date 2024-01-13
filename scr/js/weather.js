@@ -29,7 +29,7 @@ async function getInput(event) {
   }
 }
 // Fetch för att hämta värdet från adress
-//Uppdaterar globalCoords så fetchWeather kan ta fram daily
+//Uppdaterar globalCoords så fetchWeather kan ta fram daily på vädret
 async function getData(address) {
   const urlAddress = encodeURI(address);
   try {
@@ -50,6 +50,16 @@ async function getData(address) {
     fetchError(error);
   }
 }
+
+// Hämtar direkt lat/lon från användaren ifall hen godkänner position
+function getUserLocation() {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    globalCoords.lat = position.coords.latitude;
+    globalCoords.lng = position.coords.longitude;
+    fetchWeather();
+  });
+}
+
 // Uppdaterar vissa delar av skärmen med data
 function displayData(response) {
   if (response.cod === "404") {
@@ -75,7 +85,7 @@ async function fetchWeather() {
     let url = `${api.base}onecall?lat=${lat}&lon=${lng}&appid=${api.key}&${api.units}&${api.lang}`;
 
     const resp = await axios.get(url);
-    console.log("fetchWeather Response:", resp.data);
+    // console.log("fetchWeather:", resp.data);
     localStorage.setItem("weatherData", JSON.stringify(resp.data));
     showWeathers(resp.data);
   } catch (error) {
@@ -147,7 +157,7 @@ function fetchError(error) {
 }
 
 // Kollar om det finns sparningar i localstorage
-function getYourWeather() {
+function savedWeather() {
   const savedWeather = localStorage.getItem("weatherData");
   const savedLocation = localStorage.getItem("weatherLocation");
 
@@ -160,5 +170,5 @@ function getYourWeather() {
     showWeathers(JSON.parse(savedWeather));
   }
 }
-
-getYourWeather();
+getUserLocation();
+savedWeather();
