@@ -17,6 +17,10 @@
 }
 
 /* Cards */
+.text-empty {
+  font-size: 14px;
+  margin-top: 100px;
+}
 
 div[contenteditable="true"] {
   padding: 8px;
@@ -63,7 +67,8 @@ div[contenteditable="true"]:focus {
   align-items: center;
   flex-direction: column;
   border-radius: 1.5rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.281);
+  box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.281);
 }
 
 #fast,
@@ -72,9 +77,9 @@ div[contenteditable="true"]:focus {
   overflow-x: hidden;
 }
 
-#share-controls {
+/* #share-controls {
   margin-top: 0.5rem;
-}
+} */
 
 .card h2 {
   font-size: 2.4rem;

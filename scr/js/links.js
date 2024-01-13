@@ -107,7 +107,7 @@ function displayFastLinks() {
   if (fastLinks.length != 0) {
     fastElm.innerHTML = html;
   } else {
-    fastElm.innerHTML = "Finns inga sidor att se";
+    fastElm.innerHTML = '<p class="text-empty">Finns inga sidor att se</p>';
   }
 }
 

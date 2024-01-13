@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// Bonus sidan
+
 const url = "https://api.sr.se/api/v2/channels/?format=json";
 const btnStartDisplay = document.querySelector(".btn-onoff");
 const radios = document.querySelector(".mp3-display");

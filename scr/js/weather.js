@@ -3,6 +3,7 @@ import axios from "axios";
 const city = document.getElementById("city");
 const search = document.querySelector(".search");
 const btn = document.querySelector(".btn");
+const row = document.getElementById("tomorrow");
 
 let globalCoords = {
   lat: null,
@@ -90,7 +91,6 @@ function translateWeather(condition) {
   return weatherMap[condition] || condition;
 }
 
-let row = document.getElementById("tomorrow");
 function showWeathers(resp) {
   row.innerHTML = resp.daily
     .map((day, index) => {
@@ -144,6 +144,8 @@ function getYourWeather() {
 
   if (savedWeather === null || savedLocation === null) {
     console.log("Inga tidigare väderdata tillgängliga.");
+    row.innerHTML =
+      '<p class="text-empty">Sök på en stad för att komma igång</p>';
   } else {
     displayData(JSON.parse(savedLocation));
     showWeathers(JSON.parse(savedWeather));
