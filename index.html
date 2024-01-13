@@ -32,10 +32,7 @@
                 <div class="card_box_name">
                   <a href="www.google.com" target="_blank">
                     <div class="card_flex">
-                      <img
-                        src="https://www.google.com/s2/favicons?domain=$google.com&sz=25"
-                        id="icons"
-                      />
+                      <img id="icons" />
                       <h3>Google</h3>
                     </div></a
                   >
@@ -112,36 +109,33 @@
               <div class="mp3-padding">
                 <div class="mp3-display-loading">
                   <div class="mp3-display">
+                    <div class="mp3-nav">
+                      <p class="mp3-channeltype"></p>
+                      <span class="mp3-time">hej</span>
+                    </div>
                     <div class="mp3-display-top">
-                      <div class="mp3-nav">
-                        <p class="mp3-channeltype"></p>
-                        <span class="mp3-time"></span>
-                      </div>
                       <img
                         class="mp3-img"
-                        src="/scr/img/bkgimg.jpg"
+                        src="${image}"
                         alt=""
                         width="100px"
                       />
-                      <h3 class="radio-name">Radio</h3>
+                      <h3 class="radio-name"></h3>
+                      <div class="progress-box">
+                        <progress
+                          min="1"
+                          max="100"
+                          value="99"
+                          class="volume_slider"
+                          oninput="setVolume()"
+                        />
+                      </div>
                     </div>
                     <div class="mp3-display-bottom">
+                      <p class="mp3-time-playing">00:00</p>
                       <div class="mp3-channel">
-                        <p>Radio är en station</p>
-                        <div class="slider_container">
-                          <img src="" alt="vol-up" />
-                          <input
-                            type="range"
-                            min="1"
-                            max="100"
-                            value="99"
-                            class="volume_slider"
-                            onchange="setVolume()"
-                          />
-                          <img src="" alt="vol-down" srcset="" />
-                        </div>
+                        <div class="mp3-text-loop"></div>
                       </div>
-                      <audio src="">hej</audio>
                     </div>
                   </div>
                   <div class="loader">

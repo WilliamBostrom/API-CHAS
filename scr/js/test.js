@@ -76,6 +76,11 @@ async function fetchWeather() {
   }
 }
 
+let globalCoords = {
+  lat: null,
+  lng: null,
+};
+
 function translateWeather(condition) {
   const weatherMap = {
     Clear: "Klart",
@@ -124,11 +129,6 @@ function showWeathers(resp) {
     .join(" ");
 }
 
-let globalCoords = {
-  lat: null,
-  lng: null,
-};
-
 const savedWeather = localStorage.getItem("weatherData");
 const savedLocation = localStorage.getItem("weatherLocation");
 displayData(JSON.parse(savedLocation));
@@ -139,6 +139,7 @@ function fetchError(error) {
     // errorElement.style.display = "block";
     row.style.visibility = "hidden";
     setTimeout(() => {
+      //Slipper förstöra designen
       window.location.reload();
     }, 2000);
     return;

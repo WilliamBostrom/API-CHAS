@@ -80,11 +80,12 @@
 .mp3-nav {
   display: flex;
   justify-content: flex-end;
-  gap: 80px;
-  margin-right: 10px;
+  gap: 60px;
+  margin-right: 20px;
 }
 
 .radio-name {
+  margin-top: 5px;
   font-size: 25px;
   width: 115px;
   color: rgb(5, 130, 5);
@@ -109,11 +110,6 @@
 }
 /* Mp3 display bottom */
 
-.mp3-display p {
-  text-align: right;
-  margin-right: 8px;
-}
-
 .mp3-display-bottom {
   height: 80px;
   width: 250px;
@@ -129,8 +125,8 @@
   padding-right: 10px;
   margin-left: 6px;
   margin-top: 1px;
-  /*   visibility: hidden;
-  transition: visibility 1s; */
+  visibility: hidden;
+  transition: visibility 1s;
 }
 
 progress {
@@ -160,12 +156,14 @@ progress::-webkit-progress-bar {
   position: relative;
 } */
 
-.mp3-channel p {
-  color: rgb(4, 227, 4);
-  font-size: 1.4rem;
+.mp3-time-playing {
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: 600;
 }
 
 .mp3-text-loop {
+  font-size: 1.4rem;
   display: flex;
   justify-content: flex-start;
   color: rgb(4, 227, 4);
@@ -174,7 +172,7 @@ progress::-webkit-progress-bar {
   top: 60px;
   right: 0;
   width: 100%;
-  animation: sliding-text 25000ms linear infinite;
+  animation: sliding-text 10000ms linear infinite;
 }
 
 @keyframes sliding-text {
@@ -183,7 +181,7 @@ progress::-webkit-progress-bar {
   }
 
   100% {
-    transform: translateX(-2000%);
+    transform: translateX(-1000%);
   }
 }
 

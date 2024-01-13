@@ -43,6 +43,7 @@ function playpauseRadio() {
   isPlaying ? pauseRadio() : playRadio();
 }
 
+// stop play
 function playRadio() {
   console.log("clickad");
   curr_radio.play();
@@ -66,7 +67,7 @@ function pauseRadio() {
     <img class="btn-start-radio" src="/scr/img/play.svg" alt="" />
  `;
 }
-
+//Nästa radio
 const prevStn = () => {
   if (currentStation > 1) {
     currentStation--;

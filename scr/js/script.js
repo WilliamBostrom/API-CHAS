@@ -1,6 +1,6 @@
 const labelDate = document.querySelector("#date");
 const labelTime = document.querySelectorAll(".time");
-// const mp3Time = document.querySelector(".time");
+const mp3Time = document.querySelector(".mp3-time");
 const dashboard = document.querySelector("#dashboard");
 
 // 1) Här ska klockslag och datum synas och klockan ska ändras när tiden ändras utan att sidan laddas om.
@@ -21,6 +21,7 @@ function updateDateAndTime() {
   const formattedTime = `${hours}:${minutes}`;
 
   labelTime.textContent = formattedTime;
+  mp3Time.textContent = formattedTime;
 }
 // Uppdatera klockan varje sekund
 setInterval(updateDateAndTime, 1000);

@@ -1,139 +1,218 @@
 import axios from "axios";
 
-<h3 class="curr_time"></h3>;
-
-// const btnPlayPause = document.querySelector(".btn-start-radio");
-const btnStartDisplay = document.querySelector(".btn-onoff");
-let curr_radio = document.createElement("audio");
-// Steg 1. Gör en fetch till 'https://api.sr.se/api/v2/channels/?format=json'
-
 const url = "https://api.sr.se/api/v2/channels/?format=json";
+const btnStartDisplay = document.querySelector(".btn-onoff");
 const radios = document.querySelector(".mp3-display");
+const loadingMp3 = document.querySelector(".mp3-display-loading");
+const loader = document.querySelector(".loader");
+const startpauseBtn = document.querySelector(".start-mp3");
+const mp3channeltype = document.querySelector(".mp3-channeltype");
+const mp3img = document.querySelector(".mp3-img");
+const radioName = document.querySelector(".radio-name");
+const mp3tagLine = document.querySelector(".mp3-text-loop");
+const mp3timer = document.querySelector(".mp3-time-playing");
 
 let channels = [];
 let radioPerPage = 1;
-let currentStation = 1;
+let currentStation = 0;
+let updateTimer;
+let isPlaying = false;
+let curr_radio = document.createElement("audio");
 
 async function radioData() {
   try {
-    const response = await axios.get(url);
-    if (response.status !== 200) {
+    const res = await axios.get(url);
+    if (res.data.error) {
       throw new Error("Något gick snett");
     }
-
-    channels = response.data.channels;
-
-    displayRadioInfo();
-  } catch (error) {
-    console.error(error);
+    channels = res.data.channels.map((radio) => {
+      return {
+        image: radio.image,
+        name: radio.name,
+        channeltype: radio.channeltype,
+        url: radio.liveaudio.url,
+        tagline: radio.tagline,
+      };
+    });
+    displayRadioInfo(channels, currentStation);
+  } catch (err) {
+    console.error(err);
   }
 }
 
+function playpauseRadio() {
+  isPlaying ? pauseRadio() : playRadio();
+}
+
+// stop / play
+function playRadio() {
+  console.log("clickad");
+  curr_radio.play();
+  isPlaying = true;
+  mp3img.classList.add("spinn-img"); // Corrected class name
+  startpauseBtn.innerHTML = `
+  <img
+    class="pause-start-radio"
+    src="/scr/img/pause.svg"
+    alt=""
+  />
+`;
+}
+
+// Pausa radio
+function pauseRadio() {
+  curr_radio.pause();
+  isPlaying = false;
+  mp3img.classList.remove("spinn-img");
+  startpauseBtn.innerHTML = `
+    <img class="btn-start-radio" src="/scr/img/play.svg" alt="" />
+ `;
+}
+//Tidigare radio
 const prevStn = () => {
-  if (currentStation > 1) {
+  pauseRadio();
+  if (currentStation > 0) {
     currentStation--;
   } else {
-    currentStation = channels.length;
+    currentStation = channels.length - 1;
   }
-  displayRadioInfo();
+  startpauseBtn.innerHTML = `
+  <img
+    class="pause-start-radio"
+    src="/scr/img/play.svg"
+    alt=""
+  />
+`;
+  displayRadioInfo(channels, currentStation);
 };
 
+const prevBtn = document.getElementById("prevBtn");
+prevBtn.addEventListener("click", prevStn);
+
+// Nästa radio
 const nextStn = () => {
-  if (currentStation < Math.ceil(channels.length / radioPerPage)) {
+  pauseRadio();
+  if (currentStation < channels.length - 1) {
     currentStation++;
   } else {
-    currentStation = channels.length / channels.length;
+    currentStation = 0;
   }
-  displayRadioInfo();
+  startpauseBtn.innerHTML = `
+  <img
+    class="pause-start-radio"
+    src="/scr/img/play.svg"
+    alt=""
+  />
+`;
+  displayRadioInfo(channels, currentStation);
 };
 
 const nextBtn = document.getElementById("nextBtn");
 nextBtn.addEventListener("click", nextStn);
 
-const prevBtn = document.getElementById("prevBtn");
-prevBtn.addEventListener("click", prevStn);
+/* Utseendet radio */
+function displayRadioInfo(channels, currentStation) {
+  clearInterval(updateTimer);
+  reset();
 
-function displayRadioInfo() {
   const pages = [];
   for (let i = 0; i <= Math.ceil(channels.length / radioPerPage); i++) {
     pages.push(i);
   }
+  curr_radio.src = channels[currentStation].url;
+  curr_radio.load();
 
   const indexLastStation = currentStation * radioPerPage;
   const indexFirstStation = indexLastStation - radioPerPage;
   const currentPlay = channels.slice(indexFirstStation, indexLastStation);
-  // console.log(currentPlay);
+  // Styla sidan efter data
+  mp3channeltype.textContent = channels[currentStation].channeltype;
+  mp3img.src = channels[currentStation].image;
+  radioName.textContent = channels[currentStation].name;
+  mp3tagLine.textContent = channels[currentStation].tagline;
 
-  radios.innerHTML = currentPlay
-    .map(({ image, liveaudio, name, tagline }, index) => {
-      // const tagSplice = tagline.substring(0, 70) + "...";
-      return `<div class="mp3-display-top">
-      <img
-        class="mp3-img"
-        src="${image}"
-        alt=""
-        width="100px"
-      />
-      <h3 class="radio-name">${name}</h3>
-      </div>
-      <div class="mp3-display-bottom">
-      
-      <audio id="audio-${index}" controls>
-          <source src="${liveaudio.url}" type="audio/mpeg" />
-        </audio>
-        <div class="mp3-channel">
-       <progress id="progressBar" value="0" max="100"></progress>
-       <div class="mp3-text-loop"> 
-        <p>${tagline}</p>
-       </div>
-       </div>
-      </div>
-        `;
-    })
-    .join("");
+  updateTimer = setInterval(setUpdate, 1000);
+  curr_radio.addEventListener("ended", nextBtn);
 }
 
-// Random styling för mp3 radion
+startpauseBtn.addEventListener("click", playpauseRadio);
 
-const btnPlayMusic = document.querySelector(".start-mp3");
-btnPlayMusic.addEventListener("click", pauseTrack);
-
-function pauseTrack() {
-  console.log("hej");
-  btnPlayMusic.innerHTML = `<img
-  class="btn-start-radio"
-  src="/scr/img/plus.svg"
-  alt=""
-/> `;
-}
-
-const loadingMp3 = document.querySelector(".mp3-display-loading");
-const loader = document.querySelector(".loader");
+// Starta mp3-radion
 btnStartDisplay.onclick = function () {
   loadingMp3.classList.toggle("actives");
   loader.classList.add("actives");
   setTimeout(() => {
+    pauseRadio();
     radios.classList.toggle("active");
-    btnPlayMusic.disabled = false;
+    startpauseBtn.disabled = false;
     loader.classList.remove("actives");
   }, 2000);
 };
 
+function reset() {
+  mp3timer.textContent = "00:00";
+}
+
+function setUpdate() {
+  const currentTime = Math.floor(curr_radio.currentTime);
+  const minutes = Math.floor(currentTime / 60);
+  const seconds = currentTime % 60;
+
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
+  mp3timer.textContent = formattedTime;
+}
+
+// Volume controls
+const btnLow = document.querySelector(".volume-down");
+const btnHigh = document.querySelector(".volume-up");
+const volumeSlider = document.querySelector(".volume_slider");
+const progressBox = document.querySelector(".progress-box");
+// Event listeners
+btnLow.addEventListener("click", function () {
+  displayVolume();
+  decreaseVolume();
+});
+btnHigh.addEventListener("click", function () {
+  displayVolume();
+  increaseVolume();
+});
+
+function displayVolume() {
+  console.log("hej");
+  progressBox.style.visibility = "visible";
+  setTimeout(() => {
+    progressBox.style.visibility = "hidden";
+  }, 1000);
+}
+
+// Radio player controls
+function decreaseVolume() {
+  if (curr_radio.volume > 0) {
+    curr_radio.volume -= 0.1;
+    updateVolumeSlider();
+    setVolume();
+  }
+}
+
+function increaseVolume() {
+  if (curr_radio.volume < 1) {
+    curr_radio.volume += 0.1;
+    updateVolumeSlider();
+    setVolume();
+  }
+}
+
+function updateVolumeSlider() {
+  volumeSlider.value = curr_radio.volume * 100;
+}
+
+function setVolume() {
+  curr_radio.volume = volumeSlider.value / 100;
+  volumeSlider.value = curr_radio.volume * 100;
+  const progressElement = document.querySelector(".volume_slider");
+  progressElement.value = curr_radio.volume * 100;
+}
+
 radioData();
-
-/* 
-function playpauseRadio() {
-  isPlaying ? pausTrack() : playTrack();
-}
-
-function playTrack() {
-  curr_track.play();
-  isPlaying = true;
-  wave.classList.add("loader");
-  playpause_btn.innerHTML = `<i class="fa-pause-circle> </i> `>
-}
-
-
-function fixVolume () {
-  curr_track.volume = volume_slider.value / 100;
-} */
