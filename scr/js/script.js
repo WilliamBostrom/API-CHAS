@@ -45,7 +45,6 @@ function makeEditable() {
 }
 
 // 6 Textarea som sparar input
-
 function saveNotes() {
   const savedText = localStorage.getItem("textArea");
   const defaultText = savedText || "Skriv något här";
@@ -85,6 +84,7 @@ randomImagesButton.addEventListener("click", async (e) => {
   }
 });
 
+// Fetchar bilder
 async function getNewImage(requestUrl) {
   try {
     const res = await axios.get(requestUrl);
@@ -96,8 +96,6 @@ async function getNewImage(requestUrl) {
     let randomNumber = Math.floor(Math.random() * res.data.results.length);
     let selectedImage = res.data.results[randomNumber];
 
-    console.log(selectedImage);
-
     return selectedImage.urls.regular;
   } catch (err) {
     console.error(err);
@@ -105,6 +103,7 @@ async function getNewImage(requestUrl) {
   }
 }
 
+//Kör functionerna som ska köras
 const init = function () {
   updateDateAndTime();
   makeEditable();

@@ -1,9 +1,13 @@
 @media (max-width: 1200px) {
   .card_row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   body {
     height: 100%;
+  }
+
+  #dashboard {
+    margin: 4rem 0;
   }
 }
 

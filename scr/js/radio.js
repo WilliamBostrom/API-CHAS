@@ -13,6 +13,8 @@ const mp3img = document.querySelector(".mp3-img");
 const radioName = document.querySelector(".radio-name");
 const mp3tagLine = document.querySelector(".mp3-text-loop");
 const mp3timer = document.querySelector(".mp3-time-playing");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
 // Volym
 const btnLow = document.querySelector(".volume-down");
 const btnHigh = document.querySelector(".volume-up");
@@ -20,7 +22,6 @@ const volumeSlider = document.querySelector(".volume_slider");
 const progressBox = document.querySelector(".progress-box");
 
 let channels = [];
-let radioPerPage = 1;
 let currentStation = 0;
 let updateTimer;
 let isPlaying = false;
@@ -46,6 +47,23 @@ async function radioData() {
   } catch (err) {
     console.error(err);
   }
+}
+
+/* Utseendet radio */
+function displayRadioInfo(channels, currentStation) {
+  clearInterval(updateTimer);
+  reset();
+
+  curr_radio.src = channels[currentStation].url;
+  curr_radio.load();
+
+  // Styla sidan efter data
+  mp3channeltype.textContent = channels[currentStation].channeltype;
+  mp3img.src = channels[currentStation].image;
+  radioName.textContent = channels[currentStation].name;
+  mp3tagLine.textContent = channels[currentStation].tagline;
+
+  updateTimer = setInterval(setUpdate, 1000);
 }
 
 // Kolla om radio spelas
@@ -95,9 +113,6 @@ const prevStn = () => {
   displayRadioInfo(channels, currentStation);
 };
 
-const prevBtn = document.getElementById("prevBtn");
-prevBtn.addEventListener("click", prevStn);
-
 // Nästa radio
 const nextStn = () => {
   pauseRadio();
@@ -116,47 +131,6 @@ const nextStn = () => {
   displayRadioInfo(channels, currentStation);
 };
 
-const nextBtn = document.getElementById("nextBtn");
-nextBtn.addEventListener("click", nextStn);
-
-/* Utseendet radio */
-function displayRadioInfo(channels, currentStation) {
-  clearInterval(updateTimer);
-  reset();
-
-  const pages = [];
-  for (let i = 0; i <= Math.ceil(channels.length / radioPerPage); i++) {
-    pages.push(i);
-  }
-  curr_radio.src = channels[currentStation].url;
-  curr_radio.load();
-
-  const indexLastStation = currentStation * radioPerPage;
-  const indexFirstStation = indexLastStation - radioPerPage;
-  const currentPlay = channels.slice(indexFirstStation, indexLastStation);
-  // Styla sidan efter data
-  mp3channeltype.textContent = channels[currentStation].channeltype;
-  mp3img.src = channels[currentStation].image;
-  radioName.textContent = channels[currentStation].name;
-  mp3tagLine.textContent = channels[currentStation].tagline;
-
-  updateTimer = setInterval(setUpdate, 1000);
-  curr_radio.addEventListener("ended", nextBtn);
-}
-
-startpauseBtn.addEventListener("click", playpauseRadio);
-
-// Starta mp3-radion
-btnStartDisplay.onclick = function () {
-  loadingMp3.classList.toggle("actives");
-  loader.classList.add("actives");
-  setTimeout(() => {
-    pauseRadio();
-    radios.classList.toggle("active");
-    startpauseBtn.disabled = false;
-    loader.classList.remove("actives");
-  }, 2000);
-};
 // Starta om "lyssnings-tiden"
 function reset() {
   mp3timer.textContent = "00:00";
@@ -175,6 +149,20 @@ function setUpdate() {
 }
 
 // Event listeners
+btnStartDisplay.onclick = function () {
+  loadingMp3.classList.toggle("actives");
+  loader.classList.add("actives");
+  setTimeout(() => {
+    pauseRadio();
+    radios.classList.toggle("active");
+    startpauseBtn.disabled = !startpauseBtn.disabled; // Toggle the disabled state
+    loader.classList.remove("actives");
+  }, 2000);
+};
+startpauseBtn.addEventListener("click", playpauseRadio);
+nextBtn.addEventListener("click", nextStn);
+prevBtn.addEventListener("click", prevStn);
+
 btnLow.addEventListener("click", function () {
   displayVolume();
   decreaseVolume();

@@ -6,6 +6,7 @@ const linkValue = linkInput.value;
 
 let fastLinks = [];
 
+//Kollar localstorage
 function getFastLinks() {
   let fast = localStorage.getItem("fast");
   if (fast == null) {
@@ -28,7 +29,6 @@ function formatUrl(inputUrl) {
 
   const urlObject = new URL(fullUrl);
   const siteName = urlObject.hostname;
-  console.log(urlObject.hostname);
   // Snygga till namnet
   let displayName = siteName;
   displayName = displayName.replace(/^https?:\/\/(www\.)?/, "");
@@ -63,7 +63,6 @@ linkBtn.addEventListener("click", () => {
   }
   getFastLinks();
   let fastObj = formattedData;
-  // Pusha objektet in i "fastLink" och spara lokalt
   fastLinks.unshift(fastObj);
   localStorage.setItem("fast", JSON.stringify(fastLinks));
   linkInput.value = "";
@@ -72,7 +71,6 @@ linkBtn.addEventListener("click", () => {
 
 // 3a)
 //Ta bort objekt från snabba länkar
-
 document.addEventListener("click", function (event) {
   const deleteIcon = event.target.closest(".card_delete_icon");
 
