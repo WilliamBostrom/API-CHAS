@@ -1,4 +1,4 @@
-/* Nav */
+/* Nav -tid och datum */
 .dates-container {
   z-index: 3;
   background-color: rgba(179, 179, 179, 0.606);
@@ -16,11 +16,7 @@
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
 }
 
-/* Cards */
-.text-empty {
-  font-size: 14px;
-  margin-top: 100px;
-}
+/* Redigerbara namnet */
 
 div[contenteditable="true"] {
   padding: 8px;
@@ -48,6 +44,8 @@ div[contenteditable="true"]:focus {
   text-align: center;
 }
 
+/* Korten */
+
 .cards-container {
   display: flex;
   justify-content: center;
@@ -74,15 +72,16 @@ div[contenteditable="true"]:focus {
   box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.281);
 }
 
+.text-empty {
+  font-size: 14px;
+  margin-top: 100px;
+}
+
 #fast,
 #card_weather {
   height: 26rem;
   overflow-x: hidden;
 }
-
-/* #share-controls {
-  margin-top: 0.5rem;
-} */
 
 .card h2 {
   font-family: "Montserrat", sans-serif;
@@ -130,7 +129,7 @@ div[contenteditable="true"]:focus {
 .card_delete_icon {
   cursor: pointer;
 }
-
+/* favicon iconen */
 #icons {
   width: 2.5rem;
   height: 2.5rem;
@@ -138,12 +137,11 @@ div[contenteditable="true"]:focus {
   margin-left: 1rem;
 }
 
-/* Väder */
+/* Väder rutorna */
 .weather-icons {
   height: 6.5rem;
   width: 6.5rem;
 }
-
 .current_day {
   font-size: 1.5rem;
   text-align: left;
@@ -172,14 +170,6 @@ div[contenteditable="true"]:focus {
   font-weight: 600;
 }
 
-.error {
-  display: none;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  color: rgb(242, 73, 73);
-  font-weight: 600;
-}
-
 /* Anteckningar */
 .card_flex {
   display: flex;
@@ -205,4 +195,11 @@ div[contenteditable="true"]:focus {
 
 .form2 {
   justify-self: flex-end;
+}
+
+/*  footer / lite mer styling i gernal */
+.random-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
 }

@@ -1,6 +1,9 @@
+/* Mobilanpassning */
+
 @media (max-width: 1200px) {
   .card_row {
     grid-template-columns: 1fr 1fr;
+    gap: 30px;
   }
   body {
     height: 100%;

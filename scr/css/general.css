@@ -1,3 +1,4 @@
+/* General */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +8,6 @@
 html {
   font-size: 62.5%;
 }
-
-/* General */
 
 body {
   width: 100vw;
@@ -36,11 +35,6 @@ nav {
 
 footer {
   margin: 3rem 0;
-}
-.random-container {
-  display: flex;
-  justify-content: center;
-  width: 80%;
 }
 
 h1 {
@@ -151,42 +145,4 @@ input:hover {
 
 .random_img {
   margin-right: 0.5rem;
-}
-
-/* SWIPER JS */
-.slide-content {
-  max-width: 140rem !important;
-  padding-right: 50px !important;
-}
-
-.slide-content {
-  background: transparent;
-}
-
-.slide-container {
-  max-width: 1120px;
-  width: 100%;
-  padding: 50px 50px !important;
-}
-
-.swiper-button-next:after,
-.swiper-rtl .swiper-button-prev:after {
-  color: #ffd901;
-  margin-left: 20px;
-  z-index: 2;
-}
-
-.swiper-button-prev:after,
-.swiper-rtl .swiper-button-next:after {
-  color: #ffd901;
-  margin-right: 20px;
-}
-
-.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: linear-gradient(to bottom, #ff5301, #ffd901);
-}
-
-.swiper-pagination-bullet {
-  width: 14px;
-  height: 14px;
 }

@@ -16,10 +16,6 @@ För att köra detta projekt lokalt, följ stegen nedan:
    git clone https://github.com/WilliamBostrom/API-CHAS.git
    ```
 
-   ```
-
-   ```
-
 2. **Gå in i den klonade mappen::**
 
    ```bash
@@ -38,7 +34,8 @@ För att köra detta projekt lokalt, följ stegen nedan:
    ```bash
    npm run dev
    ```
-   #Konfiguration
+
+# Konfiguration
 
 För att använda vissa funktioner i detta projekt, behöver du konfigurera några API-nycklar:
 
@@ -51,6 +48,7 @@ _Hemsidan kan komma vara hostad när vid ett senare stadie, så ifall det är s�
 ## Översikt över olika delar
 
 _Bild på mall att följa:_
+
 ![bild på mitt slutresultat](/scr/img/chas-dashboard.png)
 
 ### Klocka och Datum:
@@ -91,11 +89,9 @@ _Bild på mall att följa:_
 
 ## Resonemang
 
-Denna uppgift var både lärorik och underhållande, särskilt eftersom jag inte hade erfarenhet av att arbeta med API:er tidigare. Det var fascinerande att utforska och skaffa en djupare förståelse för arraymetoder och liknande koncept som jag nyligen har lärt mig.
+Denna uppgift var både lärorik och underhållande, särskilt eftersom jag inte hade speciellt mycket erfarenhet av att arbeta med API:er tidigare. Det var intressant att utforska och skaffa en djupare förståelse för arraymetoder och liknande koncept som jag nyligen har lärt mig.
 
-En av mina styrkor är min förmåga att ta ansvar, vilket jag tidigare har visat i alla grupparbeten där jag ofta har genomfört större delen av arbetet själv. Det har bidragit till min kunskap om kod.
-
-Jag har strukturerat koden genom att organisera den i olika mappar efter varje API, och jag har gett lämpliga namn åt funktioner, mappar och id/classer för att göra koden lättförståelig för andra. Det finns några undantag i min radio.css, där jag kan ha många för liknande namn. Jag har också lagt till kommentarer över varje funktion i JavaScript-filen för ytterligare förtydligande nu vid inlämning av uppgiften.
+I detta arbete har jag försökt strukturera koden genom att organisera den i olika mappar efter varje "kort", och jag har gett lämpliga namn åt funktioner, mappar och id/classer för att göra koden lättförståelig för andra. Det finns några undantag i min radio.css, där jag kan ha många för liknande namn. Jag har också lagt till kommentarer över varje funktion i JavaScript-filen för ytterligare förtydligande nu vid inlämning av uppgiften.
 
 När det gäller förbättringsområden finns det en del, särskilt inom mina JavaScript-kunskaper. Trots att jag har studerat en del utanför skolan de senaste månaderna, känner jag att det fortfarande återstår en bit innan jag behärskar alla delar och vet exakt vilken metod som ska användas var. Jag upplever att mina bristande kunskaper i detta avseende kan göra att koden ser oorganiserad ut, vilket ibland resulterar i onödigt många rader för enklare funktioner, som exempelvis "formatUrl" i "links.js". Dessutom finns det mer för mig att lära när det gäller användningen av promises, inklusive "promise all/race". Det skulle ha varit möjligt att optimera genom att kombinera fetch-anropen från olika URL:er till ett enda (t.ex. i weather.js).
 

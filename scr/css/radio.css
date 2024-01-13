@@ -1,3 +1,4 @@
+/* Overall styling kortet och display */
 .mp3-container {
   width: 100%;
   height: 100%;
@@ -72,7 +73,7 @@
   border-radius: 1.5rem;
 }
 
-/* Mp3 top display */
+/* Övre halvan av displayen */
 
 .mp3-display-top {
   display: flex;
@@ -124,7 +125,30 @@
     transform: rotate(360deg);
   }
 }
-/* Mp3 display bottom */
+/* Ljud baren */
+.progress-box {
+  width: 10px;
+  padding-right: 10px;
+  margin-left: 6px;
+  margin-top: 1px;
+  visibility: hidden;
+  transition: visibility 1s;
+}
+
+progress {
+  width: 55px;
+  opacity: 0.8;
+  height: 15px;
+  transform: rotate(270deg);
+  justify-self: center;
+  accent-color: grey;
+}
+
+progress::-webkit-progress-bar {
+  accent-color: grey;
+}
+
+/* Nedre delen av displayen */
 
 .mp3-display-bottom {
   height: 90px;
@@ -136,32 +160,6 @@
   position: relative;
 }
 
-.progress-box {
-  width: 10px;
-  padding-right: 10px;
-  margin-left: 6px;
-  margin-top: 1px;
-  visibility: hidden;
-  transition: visibility 1s;
-}
-
-progress {
-  /* appearance: none; */
-  /*   -webkit-appearance: none; */
-  width: 55px;
-  opacity: 0.8;
-  height: 15px;
-  transform: rotate(270deg);
-  justify-self: center;
-  accent-color: grey;
-}
-
-progress::-webkit-progress-bar {
-  /* background-color: white; */
-  accent-color: white;
-  /* border-bottom-left-radius: 3px; */
-}
-
 .mp3-time-playing {
   font-size: 24px;
   margin-bottom: 30px;
@@ -171,7 +169,6 @@ progress::-webkit-progress-bar {
   background-color: rgba(179, 179, 179, 0.364);
   width: 100%;
   height: 27px;
-  /* margin-top: 6px; */
 }
 
 .mp3-text-loop {
