@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const city = document.getElementById("city");
+const search = document.querySelector(".search");
+const btn = document.querySelector(".btn");
 
 let globalCoords = {
   lat: null,
@@ -11,15 +13,15 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-const search = document.querySelector(".search");
-const btn = document.querySelector(".btn");
 btn.addEventListener("click", getInput);
 
 async function getInput(event) {
   event.preventDefault();
   if (event.type == "click") {
+    let correctSearch = search.value;
+    let adressNew = correctSearch.toLowerCase();
     await fetchWeather();
-    await getData(search.value);
+    await getData(adressNew);
   }
 }
 
@@ -29,13 +31,12 @@ async function getData(address) {
     const response = await axios.get(
       `${api.base}weather?q=${urlAddress}&units=metric&appid=${api.key}`
     );
-
+    console.log("API Response:", response.data);
     const coordinates = {
       lat: response.data.coord.lat,
       lng: response.data.coord.lon,
     };
 
-    // console.log(coordinates);
     globalCoords.lat = coordinates.lat;
     globalCoords.lng = coordinates.lng;
     displayData(response.data);
@@ -47,12 +48,10 @@ async function getData(address) {
 
 function displayData(response) {
   if (response.cod === "404") {
-    // const error = document.querySelector(".error");
-    // error.textContent = "Skriv en stad";
+    console.log("hej");
     city.innerText = "Dagen";
     search.value = "";
   } else {
-    // errorElement.style.display = "none";
     row.style.display = "block";
     city.innerText = `${response.name}`;
     search.value = "";
@@ -70,7 +69,7 @@ async function fetchWeather() {
     let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${api.key}&units=${units}&lang=${lang}`;
 
     const resp = await axios.get(url);
-
+    console.log("fetchWeather Response:", resp.data);
     localStorage.setItem("weatherData", JSON.stringify(resp.data));
     showWeathers(resp.data);
   } catch (error) {

@@ -1,74 +1,79 @@
 import axios from "axios";
 
+const city = document.getElementById("city");
+const search = document.querySelector(".search");
+const btn = document.querySelector(".btn");
+
+let globalCoords = {
+  lat: null,
+  lng: null,
+};
 const api = {
   key: "28fd15358cdecbc1a1dfef367e71acef",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
-const search = document.querySelector(".search");
-const btn = document.querySelector(".btn");
 btn.addEventListener("click", getInput);
 
 async function getInput(event) {
   event.preventDefault();
   if (event.type == "click") {
-    // await getCoordsForWeather(search.value);
-    console.log(search.value);
+    let correctSearch = search.value;
+    let adressNew = correctSearch.toLowerCase();
     await fetchWeather();
-    await getData(search.value);
+    await getData(adressNew);
   }
 }
 
-async function getData() {
+async function getData(address) {
+  const urlAddress = encodeURI(address);
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${search.value}&units=metric&appid=${api.key}`
+      `${api.base}weather?q=${urlAddress}&units=metric&appid=${api.key}`
     );
+    console.log("API Response:", response.data);
+    const coordinates = {
+      lat: response.data.coord.lat,
+      lng: response.data.coord.lon,
+    };
 
+    globalCoords.lat = coordinates.lat;
+    globalCoords.lng = coordinates.lng;
     displayData(response.data);
-    console.log(response);
+    return coordinates;
   } catch (error) {
-    if (error.response && error.response.status === 404) {
-      const errorElement = document.querySelector(".error");
-      errorElement.textContent = "Please enter a valid city";
-    } else {
-      console.error("An error occurred while fetching data:", error);
-    }
+    fetchError(error);
   }
 }
 
 function displayData(response) {
-  // console.log(response);
-  const city = document.getElementById("city");
   if (response.cod === "404") {
-    const error = document.querySelector(".error");
-    error.textContent = "Please enter a valid city";
-    search.value = "";
+    console.log("hej");
     city.innerText = "Dagen";
+    search.value = "";
   } else {
+    row.style.display = "block";
     city.innerText = `${response.name}`;
-    console.log(response.name);
     search.value = "";
   }
   localStorage.setItem("weatherLocation", JSON.stringify(response));
 }
 
 async function fetchWeather() {
-  let lat = globalCoords.lat; // || 59.32932349999999;
-  let lng = globalCoords.lng; // || 18.0685808;
-  let key = "7562c44b17e0876f37e5243e778fd0fe";
-  let lang = "sv";
-  let units = "metric";
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${key}&units=${units}&lang=${lang}`;
-
   try {
+    let lat = globalCoords.lat || 59.32932349999999;
+    let lng = globalCoords.lng || 18.0685808;
+
+    let lang = "sv-SE";
+    let units = "metric";
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${api.key}&units=${units}&lang=${lang}`;
+
     const resp = await axios.get(url);
-    showWeathers(resp.data);
-    console.log(resp);
+    console.log("fetchWeather Response:", resp.data);
     localStorage.setItem("weatherData", JSON.stringify(resp.data));
-  } catch (err) {
-    console.error(err);
-    // Handle errors here, for example, show an error message to the user
+    showWeathers(resp.data);
+  } catch (error) {
+    fetchError(error);
   }
 }
 
@@ -85,14 +90,12 @@ function translateWeather(condition) {
   return weatherMap[condition] || condition;
 }
 
+let row = document.getElementById("tomorrow");
 function showWeathers(resp) {
-  let row = document.getElementById("tomorrow");
-  // row.innerHTML = "";
   row.innerHTML = resp.daily
     .map((day, index) => {
       if (index <= 2) {
         let dt = new Date(day.dt * 1000);
-
         let options = { weekday: "long" };
         let dayNames = ["idag", "imorgon"];
         let dayName =
@@ -115,7 +118,6 @@ function showWeathers(resp) {
             </div>
             <div class="current">
               <div class="nothing"></div>
-              
             </div>
           </div>
         </section>`;
@@ -124,36 +126,28 @@ function showWeathers(resp) {
     .join(" ");
 }
 
-let globalCoords = {
-  lat: null,
-  lng: null,
-};
-/* 
-const GOOGLE_API_KEY = "AIzaSyD8vmrArfL6BekPeh0xA1Ga8Vc1lB0a7pA";
-async function getCoordsForWeather(address) {
-  const urlAddress = encodeURI(address);
-  try {
-    const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${urlAddress}&key=${GOOGLE_API_KEY}`
-    );
-
-    if (response.status >= 200 && response.status < 300) {
-      const data = response.data;
-      const coordinates = data.results[0].geometry.location;
-      globalCoords.lat = coordinates.lat;
-      globalCoords.lng = coordinates.lng;
-      console.log(globalCoords);
-      return coordinates;
-    } else {
-      throw new Error(`Misslyckades att fetcha! Statuskod: ${response.status}`);
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
+function fetchError(error) {
+  if (error.response && error.response.status === 404) {
+    row.style.visibility = "hidden";
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    return;
+  } else {
+    console.error("Felet är:", error);
   }
-} */
+}
 
-const savedWeather = localStorage.getItem("weatherData");
-const savedLocation = localStorage.getItem("weatherLocation");
-displayData(JSON.parse(savedLocation));
-showWeathers(JSON.parse(savedWeather));
+function getYourWeather() {
+  const savedWeather = localStorage.getItem("weatherData");
+  const savedLocation = localStorage.getItem("weatherLocation");
+
+  if (savedWeather === null || savedLocation === null) {
+    console.log("Inga tidigare väderdata tillgängliga.");
+  } else {
+    displayData(JSON.parse(savedLocation));
+    showWeathers(JSON.parse(savedWeather));
+  }
+}
+
+getYourWeather();

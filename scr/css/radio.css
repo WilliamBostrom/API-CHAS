@@ -47,7 +47,10 @@
   margin: 0 auto;
   border-radius: 1.5rem;
   width: 95%;
-  background-color: #333;
+  background-image: url("/scr/img/water.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: none;
   height: 160px;
   width: 250px;
@@ -81,6 +84,11 @@
   display: flex;
   justify-content: flex-end;
   gap: 60px;
+  width: 100%;
+  background: rgba(179, 179, 179, 0.248);
+}
+
+.mp3-time {
   margin-right: 20px;
 }
 

@@ -11,6 +11,11 @@ const mp3img = document.querySelector(".mp3-img");
 const radioName = document.querySelector(".radio-name");
 const mp3tagLine = document.querySelector(".mp3-text-loop");
 const mp3timer = document.querySelector(".mp3-time-playing");
+// Volym
+const btnLow = document.querySelector(".volume-down");
+const btnHigh = document.querySelector(".volume-up");
+const volumeSlider = document.querySelector(".volume_slider");
+const progressBox = document.querySelector(".progress-box");
 
 let channels = [];
 let radioPerPage = 1;
@@ -19,6 +24,7 @@ let updateTimer;
 let isPlaying = false;
 let curr_radio = document.createElement("audio");
 
+//Fetcha radio
 async function radioData() {
   try {
     const res = await axios.get(url);
@@ -40,6 +46,7 @@ async function radioData() {
   }
 }
 
+// Kolla om radio spelas
 function playpauseRadio() {
   isPlaying ? pauseRadio() : playRadio();
 }
@@ -148,11 +155,12 @@ btnStartDisplay.onclick = function () {
     loader.classList.remove("actives");
   }, 2000);
 };
-
+// Starta om "lyssnings-tiden"
 function reset() {
   mp3timer.textContent = "00:00";
 }
 
+// formatera "lyssnings-tiden"
 function setUpdate() {
   const currentTime = Math.floor(curr_radio.currentTime);
   const minutes = Math.floor(currentTime / 60);
@@ -164,11 +172,6 @@ function setUpdate() {
   mp3timer.textContent = formattedTime;
 }
 
-// Volume controls
-const btnLow = document.querySelector(".volume-down");
-const btnHigh = document.querySelector(".volume-up");
-const volumeSlider = document.querySelector(".volume_slider");
-const progressBox = document.querySelector(".progress-box");
 // Event listeners
 btnLow.addEventListener("click", function () {
   displayVolume();
@@ -179,6 +182,7 @@ btnHigh.addEventListener("click", function () {
   increaseVolume();
 });
 
+// För ljudet
 function displayVolume() {
   console.log("hej");
   progressBox.style.visibility = "visible";
@@ -187,7 +191,6 @@ function displayVolume() {
   }, 1000);
 }
 
-// Radio player controls
 function decreaseVolume() {
   if (curr_radio.volume > 0) {
     curr_radio.volume -= 0.1;

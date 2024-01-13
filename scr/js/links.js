@@ -28,7 +28,7 @@ function formatUrl(inputUrl) {
 
   const urlObject = new URL(fullUrl);
   const siteName = urlObject.hostname;
-
+  console.log(urlObject.hostname);
   // Snygga till namnet
   let displayName = siteName;
   displayName = displayName.replace(/^https?:\/\/(www\.)?/, "");
@@ -70,11 +70,26 @@ linkBtn.addEventListener("click", () => {
   displayFastLinks();
 });
 
+// 3a)
+//Ta bort objekt från snabba länkar
+
+document.addEventListener("click", function (event) {
+  const deleteIcon = event.target.closest(".card_delete_icon");
+
+  if (deleteIcon) {
+    getFastLinks();
+    const index = +deleteIcon.getAttribute("data-index");
+    fastLinks.splice(index, 1);
+    localStorage.setItem("fast", JSON.stringify(fastLinks));
+    displayFastLinks();
+  }
+});
+
 // Visa "Snabba länkar" på sidan
 function displayFastLinks() {
   getFastLinks();
   let html = "";
-  fastLinks.forEach(function (element, index) {
+  fastLinks.forEach(function (element) {
     html += `  <button href="${element.title}" class="card_button">
     <div class="card_box_name">
     <a href="${
@@ -83,10 +98,8 @@ function displayFastLinks() {
       element.favicon
     }" id="icons"/> <h3>${element.title}</h3></div></a>
     </div>
-    <a class="card_delete_icon" onclick="deleteFast(${fastLinks.indexOf(
-      element
-    )})"
-><img src="./scr/img/minus-circle.svg"/></a>
+    <a class="card_delete_icon" data-index="${fastLinks.indexOf(element)}">
+    <img src="./scr/img/minus-circle.svg"/></a>
     
   </button>`;
   });
@@ -95,19 +108,6 @@ function displayFastLinks() {
     fastElm.innerHTML = html;
   } else {
     fastElm.innerHTML = "Finns inga sidor att se";
-  }
-}
-
-// 3a)
-//Ta bort objekt från snabba länkar
-
-function deleteFast(index) {
-  let confirmDel = confirm("Ta bort det här sidan från Snabblänkar");
-  if (confirmDel === true) {
-    getFastLinks();
-    fastLinks.splice(index, 1);
-    localStorage.setItem("fast", JSON.stringify(fastLinks));
-    displayFastLinks();
   }
 }
 
