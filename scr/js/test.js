@@ -2,6 +2,10 @@ import axios from "axios";
 
 const city = document.getElementById("city");
 
+let globalCoords = {
+  lat: null,
+  lng: null,
+};
 const api = {
   key: "28fd15358cdecbc1a1dfef367e71acef",
   base: "https://api.openweathermap.org/data/2.5/",
@@ -34,7 +38,6 @@ async function getData(address) {
     // console.log(coordinates);
     globalCoords.lat = coordinates.lat;
     globalCoords.lng = coordinates.lng;
-    console.log(globalCoords.lng);
     displayData(response.data);
     return coordinates;
   } catch (error) {
@@ -44,15 +47,14 @@ async function getData(address) {
 
 function displayData(response) {
   if (response.cod === "404") {
-    const error = document.querySelector(".error");
-    error.textContent = "Skriv en stad";
+    // const error = document.querySelector(".error");
+    // error.textContent = "Skriv en stad";
     city.innerText = "Dagen";
     search.value = "";
   } else {
     // errorElement.style.display = "none";
     row.style.display = "block";
     city.innerText = `${response.name}`;
-    console.log(city.innerText);
     search.value = "";
   }
   localStorage.setItem("weatherLocation", JSON.stringify(response));
@@ -76,11 +78,6 @@ async function fetchWeather() {
   }
 }
 
-let globalCoords = {
-  lat: null,
-  lng: null,
-};
-
 function translateWeather(condition) {
   const weatherMap = {
     Clear: "Klart",
@@ -93,6 +90,7 @@ function translateWeather(condition) {
 
   return weatherMap[condition] || condition;
 }
+
 let row = document.getElementById("tomorrow");
 function showWeathers(resp) {
   row.innerHTML = resp.daily
@@ -129,17 +127,10 @@ function showWeathers(resp) {
     .join(" ");
 }
 
-const savedWeather = localStorage.getItem("weatherData");
-const savedLocation = localStorage.getItem("weatherLocation");
-displayData(JSON.parse(savedLocation));
-showWeathers(JSON.parse(savedWeather));
-
 function fetchError(error) {
   if (error.response && error.response.status === 404) {
-    // errorElement.style.display = "block";
     row.style.visibility = "hidden";
     setTimeout(() => {
-      //Slipper förstöra designen
       window.location.reload();
     }, 2000);
     return;
@@ -147,3 +138,17 @@ function fetchError(error) {
     console.error("Felet är:", error);
   }
 }
+
+function getYourWeather() {
+  const savedWeather = localStorage.getItem("weatherData");
+  const savedLocation = localStorage.getItem("weatherLocation");
+
+  if (savedWeather === null || savedLocation === null) {
+    console.log("Inga tidigare väderdata tillgängliga.");
+  } else {
+    displayData(JSON.parse(savedLocation));
+    showWeathers(JSON.parse(savedWeather));
+  }
+}
+
+getYourWeather();
