@@ -43,7 +43,7 @@ För att använda vissa funktioner i detta projekt, behöver du konfigurera någ
 
 **Unsplash API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i script js “accessKey”.
 
-_Hemsidan kan komma vara hostad när vid ett senare stadie, så ifall det är så behövs ingen egen API-nyckeln hämtas_
+\_Hemsidan kan komma vara hostad vid ett senare stadie, så ifall det är så, då behövs det inga egena API-nyckelar.
 
 ## Översikt över olika delar
 
@@ -101,7 +101,7 @@ Efter att ha snabbt byggt sidan bestämde jag mig för att utmana mig själv gen
 
 ## Bonusdelen:
 
-Jag valde att skapa en radio från Sveriges Radios API, vilket slutade med mer kod än hela min styles.css för resterande av webbplatsen. Jag implementerade en "play-knapp" som är inaktiverad när radion är avstängd, lade också till en "loading-skärm" med setTimeout, integrerade Unsplash API även där för att generera en slumpmässig bakgrundsbild (tema “white” när inget anna sökord anges), och anpassade den efter skärmen i mp3-spelaren vid sökning. Jag inkluderade även klockfunktionen från toppen av hemsidan, la till en setTimeout för ett "progress-elementet" så att det visas i en sekund vid knapptryck för ljud (höja och sänka), samt CSS-animationer för rullande text från radionkanalernas API. En rotationsanimation lades också till för bilden som representerar radionkanalen vid uppspelning av musik.
+Jag valde att skapa en radio från Sveriges Radios API, vilket slutade med mer kod än hela min styles.css för resterande av webbplatsen. Jag implementerade en "play-knapp" som är inaktiverad när radion är avstängd, lade också till en "loading-skärm" med setTimeout, integrerade ett nytt API även där, från "https://dog.ceo/dog-api", som jag byggde tillsammans med Unsplashs API för att generera en slumpmässig hundbakgrundsbild, gör en promise all på både Unsplash API och Dog.ceo API och gör att både bakgrundsbilden för hela skärmen uppdateras och att nya hundbilder visas i "displayen" för mp3-spelaren. Jag inkluderade även klockfunktionen från toppen av hemsidan, la till en setTimeout för ett "progress-elementet" så att ljudbaren visas i en sekund vid knapptryck för ljud (höja och sänka), samt en CSS-animationer för rullande text från radionkanalernas API och även en rotationsanimation för bilden som representerar radionkanalen vid uppspelning av musik.
 
 ## Mitt resultat
 

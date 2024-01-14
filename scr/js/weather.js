@@ -16,18 +16,16 @@ const api = {
   lang: "lang=sv-SE",
 };
 
-btn.addEventListener("click", getInput);
-
 //Hämtar sökordet från input
-async function getInput(event) {
+btn.addEventListener("click", async (event) => {
   event.preventDefault();
-  if (event.type == "click") {
+  if (event.type === "click") {
     let correctSearch = search.value;
-    let adressNew = correctSearch.toLowerCase();
+    let addressNew = correctSearch.toLowerCase();
+    await getData(addressNew);
     await fetchWeather();
-    await getData(adressNew);
   }
-}
+});
 // Fetch för att hämta värdet från adress
 //Uppdaterar globalCoords så fetchWeather kan ta fram daily på vädret
 async function getData(address) {

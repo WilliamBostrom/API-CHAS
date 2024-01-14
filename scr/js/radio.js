@@ -73,7 +73,6 @@ function playpauseRadio() {
 
 // stop / play
 function playRadio() {
-  console.log("clickad");
   curr_radio.play();
   isPlaying = true;
   mp3img.classList.add("spinn-img"); // Corrected class name
@@ -174,7 +173,6 @@ btnHigh.addEventListener("click", function () {
 
 // För ljudet
 function displayVolume() {
-  console.log("hej");
   progressBox.style.visibility = "visible";
   setTimeout(() => {
     progressBox.style.visibility = "hidden";

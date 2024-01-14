@@ -48,8 +48,8 @@
   margin: 0 auto;
   border-radius: 1.5rem;
   width: 95%;
-  background-image: url("/scr/img/water.jpg");
-  background-position: center;
+  background-image: url("/scr/img/displayimg.jpg");
+  background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;
   display: none;
@@ -102,6 +102,7 @@
   color: black;
   line-height: 1;
   font-family: "Montserrat", "Open Sans", sans-serif;
+  text-shadow: 0.5px 0.5px 0.5px white;
 }
 
 .mp3-img {
@@ -163,6 +164,7 @@ progress::-webkit-progress-bar {
 .mp3-time-playing {
   font-size: 24px;
   margin-bottom: 30px;
+  text-shadow: 0.5px 0.5px 0.5px white;
 }
 
 .mp3-channel {

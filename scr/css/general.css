@@ -146,3 +146,6 @@ input:hover {
 .random_img {
   margin-right: 0.5rem;
 }
+.random-form {
+  display: flex;
+}

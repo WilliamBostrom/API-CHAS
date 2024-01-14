@@ -63,18 +63,18 @@ const accessKey = "7NL9L20_W18jVy_mwrsMMbptge1UZ2BazM_czXLheTc";
 // Bakgrundsbilds-knappen för body om mp3display
 randomImagesButton.addEventListener("click", async (e) => {
   e.preventDefault();
-  console.log("klickad");
   let inputBackground = backgroundTheme.value.trim();
   let query = inputBackground ? inputBackground : "sweden";
-  let queryMp3 = inputBackground ? inputBackground : "white";
+  // let queryMp3 = inputBackground ? inputBackground : "white";
   let requestUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}`;
-  let requestUrl2 = `https://api.unsplash.com/search/photos?query=${queryMp3}&client_id=${accessKey}`;
+  let requestUrl2 = "https://dog.ceo/api/breeds/image/random";
+  // let requestUrl2 = `https://api.unsplash.com/search/photos?query=${queryMp3}&client_id=${accessKey}`;
   console.log(requestUrl);
 
   try {
     const [randomImage, randomImage2] = await Promise.all([
       getNewImage(requestUrl),
-      getNewImage(requestUrl2),
+      getNewDogImage(requestUrl2),
     ]);
 
     document.body.style.backgroundImage = `url(${randomImage})`;
@@ -97,6 +97,22 @@ async function getNewImage(requestUrl) {
     let selectedImage = res.data.results[randomNumber];
 
     return selectedImage.urls.regular;
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+}
+
+// Fetchar slumpmässiga hundbild från "dog.ceo"
+async function getNewDogImage(requestUrl) {
+  try {
+    const res = await axios.get(requestUrl);
+
+    if (!res.data.message) {
+      throw new Error("Misslyckad fetch");
+    }
+
+    return res.data.message;
   } catch (err) {
     console.error(err);
     return;
