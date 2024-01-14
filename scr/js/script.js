@@ -58,7 +58,7 @@ function saveNotes() {
 
 // 7) Unsplash API
 //För att få fram en random bakgrundsbild + sökord
-const accessKey = "7NL9L20_W18jVy_mwrsMMbptge1UZ2BazM_czXLheTc";
+const accessKey = import.meta.env.VITE_UNSPLASH_KEY;
 
 // Bakgrundsbilds-knappen för body om mp3display
 randomImagesButton.addEventListener("click", async (e) => {
