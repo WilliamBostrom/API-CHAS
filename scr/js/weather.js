@@ -10,7 +10,6 @@ let globalCoords = {
   lng: null,
 };
 const api = {
-  key: "28fd15358cdecbc1a1dfef367e71acef",
   base: "https://api.openweathermap.org/data/2.5/",
   units: "units=metric",
   lang: "lang=sv-SE",
@@ -32,7 +31,7 @@ async function getData(address) {
   const urlAddress = encodeURI(address);
   try {
     const response = await axios.get(
-      `${api.base}weather?q=${urlAddress}&${api.units}&appid=${api.key}&${api_key}`
+      `${api.base}weather?q=${urlAddress}&${api.units}&appid=${api_key}&${api.lang}`
     );
     const coordinates = {
       lat: response.data.coord.lat,
