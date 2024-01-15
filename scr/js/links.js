@@ -88,7 +88,7 @@ function displayFastLinks() {
   getFastLinks();
   let html = "";
   fastLinks.forEach(function (element) {
-    html += `  <button href="${element.title}" class="card_button">
+    html += `<button class="card_button">
     <div class="card_box_name">
     <a href="${
       element.link
