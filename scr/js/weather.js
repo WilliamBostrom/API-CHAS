@@ -75,13 +75,13 @@ function displayData(response) {
 // Så dagarna kan visas på sidan
 async function fetchWeather() {
   try {
-    let lat = globalCoords.lat || 59.32932349999999;
-    let lng = globalCoords.lng || 18.0685808;
+    let lat = globalCoords.lat;
+    let lng = globalCoords.lng;
 
     let url = `${api.base}onecall?lat=${lat}&lon=${lng}&appid=${api_key}&${api.units}&${api.lang}`;
 
     const resp = await axios.get(url);
-    // console.log("fetchWeather:", resp.data);
+
     localStorage.setItem("weatherData", JSON.stringify(resp.data));
     showWeathers(resp.data);
   } catch (error) {
@@ -154,16 +154,15 @@ function fetchError(error) {
 
 // Kollar om det finns sparningar i localstorage
 function savedWeather() {
-  const savedWeather = localStorage.getItem("weatherData");
   const savedLocation = localStorage.getItem("weatherLocation");
-
+  const savedWeather = localStorage.getItem("weatherData");
   if (savedWeather === null || savedLocation === null) {
     console.log("Inga tidigare väderdata tillgängliga.");
     row.innerHTML =
       '<p class="text-empty">Sök på en stad för att komma igång</p>';
   } else {
-    displayData(JSON.parse(savedLocation));
     showWeathers(JSON.parse(savedWeather));
+    displayData(JSON.parse(savedLocation));
   }
 }
 getUserLocation();
