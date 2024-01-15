@@ -4,7 +4,7 @@ Individuell uppgift från Chas Academy.
 
 ## Beskrivning:
 
-Uppgiften handlade om att skapa ett dashboard med HTML, CSS och JavaScript utan att använda färdiga ramverk (_vanilla_). Användningen av Axios, ett JavaScript-bibliotek, var nödvändig för att hämta data från ett externt API istället för den inbyggda fetch-funktionen. Dashboarden implementerades med LocalStorage för att behålla ändringar mellan sessioner.
+Uppgiften gick ut på att skapa ett dashboard med HTML, CSS och JavaScript utan att använda några färdiga ramverk (_vanilla_). En annan aspekt var att använda Axios, ett JavaScript-bibliotek, att använda sig av för att hämta data från ett externt API, istället för den inbyggda fetch-funktionen. Dashboarden implementerades även med LocalStorage för att bevara ändringar mellan olika sessioner.
 
 ## Installation
 
@@ -39,11 +39,11 @@ För att köra detta projekt lokalt, följ stegen nedan:
 
 För att använda vissa funktioner i detta projekt, behöver du konfigurera några API-nycklar:
 
-**OpenWeather API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i weaher.js (lägg till din nyckel i app objectet).
+**OpenWeather API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i weaher.js (lägg till din nyckel i variablen "const api_key" ).
 
-**Unsplash API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i script js “accessKey”.
+**Unsplash API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i script.js “const accessKey”.
 
-\_Hemsidan kan komma vara hostad vid ett senare stadie, så ifall det är så, då behövs det inga egena API-nyckelar.
+_Hemsidan kan komma vara hostad vid ett senare stadie, så ifall det är så, då behövs det inga egna API-nycklar._
 
 ## Översikt över olika delar
 
