@@ -49,7 +49,7 @@ _Hemsidan kan komma vara hostad vid ett senare stadie, så ifall det är så, d�
 
 _Bild på mall att följa:_
 
-![bild på mitt slutresultat](/scr/img/chas-dashboard.png)
+![bild på mall att följa](/scr/img/chas-dashboard.png)
 
 ### Klocka och Datum:
 
