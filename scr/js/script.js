@@ -8,7 +8,7 @@ const textArea = document.querySelector(".card_textarea");
 const backgroundTheme = document.querySelector("#bakgrundsTema");
 const mp3display = document.querySelector(".mp3-display");
 const randomImagesButton = document.querySelector(".randomImagesButton");
-
+const accessKey = import.meta.env.VITE_UNSPLASH_KEY;
 // 1) Här ska klockslag och datum synas och klockan ska ändras när tiden ändras utan att sidan laddas om.
 function updateDateAndTime() {
   const now = new Date();
@@ -58,7 +58,6 @@ function saveNotes() {
 
 // 7) Unsplash API
 //För att få fram en random bakgrundsbild + sökord
-const accessKey = import.meta.env.VITE_UNSPLASH_KEY;
 
 // Bakgrundsbilds-knappen för body om mp3display
 randomImagesButton.addEventListener("click", async (e) => {
