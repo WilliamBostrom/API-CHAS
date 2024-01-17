@@ -30,6 +30,12 @@ För att köra detta projekt lokalt, följ stegen nedan:
 
    ```
 
+   . **Lägg in API nycklarna:** Kolla Konfiguration i nästa steg
+
+   ```
+
+   ```
+
 4. **Öppna sidan:**
    ```bash
    npm run dev
@@ -49,7 +55,7 @@ För att använda vissa funktioner i detta projekt, behöver du konfigurera någ
 
 ![bild på mall att följa](/scr/img/env-img.png)
 
-**Lägg in API nycklarna i .env-filen detta format:**
+**Lägg sedan in API nycklarna i .env-filen i detta format:**
 
 - VITE_WEATHER_KEY=28fd15358cdecbc1a1dfe
 - VITE_UNSPLASH_KEY=7NL9L20_W18jVy_mwrs
