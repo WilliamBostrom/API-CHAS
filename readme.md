@@ -10,33 +10,33 @@ Uppgiften gick ut på att skapa ett dashboard med HTML, CSS och JavaScript utan 
 
 För att köra detta projekt lokalt, följ stegen nedan:
 
-1. **Klona detta repository till din lokala maskin:**
+1.  **Klona detta repository till din lokala maskin:**
 
-   ```bash
-   git clone https://github.com/WilliamBostrom/API-CHAS.git
-   ```
+```bash
+git clone https://github.com/WilliamBostrom/API-CHAS.git
+```
 
-2. **Gå in i den klonade mappen::**
+2.  **Gå in i den klonade mappen::**
 
-   ```bash
-   cd ditt-repo
+```bash
+cd ditt-repo
 
-   ```
+```
 
-   3.**Installera projektets beroenden:**
+3.**Installera projektets beroenden:**
 
-   ```bash
-   npm install
+```bash
+npm install
 
-   ```
+```
 
-   4.**Lägg in API nycklarna:** Kolla _Konfiguration_ i nästa steg
+4.**Lägg in API nycklarna:** Kolla _Konfiguration_ i nästa steg
 
-   5.**Öppna sidan:**
+5.**Öppna sidan:**
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 # Konfiguration
 
