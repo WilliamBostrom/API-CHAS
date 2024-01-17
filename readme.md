@@ -23,20 +23,17 @@ För att köra detta projekt lokalt, följ stegen nedan:
 
    ```
 
-3. **Installera projektets beroenden:**
+   3.**Installera projektets beroenden:**
 
    ```bash
    npm install
 
    ```
 
-   . **Lägg in API nycklarna:** Kolla Konfiguration i nästa steg
+   4.**Lägg in API nycklarna:** Kolla _Konfiguration_ i nästa steg
 
-   ```
+   5.**Öppna sidan:**
 
-   ```
-
-4. **Öppna sidan:**
    ```bash
    npm run dev
    ```
