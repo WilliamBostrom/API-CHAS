@@ -29,6 +29,7 @@ function formatUrl(inputUrl) {
 
   const urlObject = new URL(fullUrl);
   const siteName = urlObject.hostname;
+
   // Snygga till namnet
   let displayName = siteName;
   displayName = displayName.replace(/^https?:\/\/(www\.)?/, "");

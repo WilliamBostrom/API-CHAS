@@ -43,6 +43,17 @@ För att använda vissa funktioner i detta projekt, behöver du konfigurera någ
 
 **Unsplash API:** Registrera dig där för att få din API-nyckel. Ersätt sedan din nyckel i script.js “const accessKey”.
 
+**Lägg in dina nycklar så här**
+
+**Skapa en .env fil utanför mapparna (kolla bild nedan):**
+
+![bild på mall att följa](/scr/img/env-img.png)
+
+** Lägg in API nycklarna i .env-filen detta format:**
+
+- VITE_WEATHER_KEY=28fd15358cdecbc1a1dfe
+- VITE_UNSPLASH_KEY=7NL9L20_W18jVy_mwrs
+
 _Hemsidan kan komma vara hostad vid ett senare stadie, så ifall det är så, då behövs det inga egna API-nycklar._
 
 ## Översikt över olika delar

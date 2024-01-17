@@ -57,10 +57,9 @@ function getUserLocation() {
 }
 
 // Uppdaterar vissa delar av skärmen med data
-function displayData(response) {
+async function displayData(response) {
   if (response.cod === "404") {
     console.log(response);
-    console.log("hej");
     city.innerText = "Dagen";
     search.value = "";
   } else {

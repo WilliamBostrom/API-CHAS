@@ -64,10 +64,8 @@ randomImagesButton.addEventListener("click", async (e) => {
   e.preventDefault();
   let inputBackground = backgroundTheme.value.trim();
   let query = inputBackground ? inputBackground : "sweden";
-  // let queryMp3 = inputBackground ? inputBackground : "white";
   let requestUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}`;
   let requestUrl2 = "https://dog.ceo/api/breeds/image/random";
-  // let requestUrl2 = `https://api.unsplash.com/search/photos?query=${queryMp3}&client_id=${accessKey}`;
   console.log(requestUrl);
 
   try {
@@ -88,10 +86,10 @@ async function getNewImage(requestUrl) {
   try {
     const res = await axios.get(requestUrl);
 
-    if (!res.data.results || !res.data.results.length) {
+    if (!res.data.results) {
       throw new Error("Misslyckad fetch");
     }
-
+    console.log(res);
     let randomNumber = Math.floor(Math.random() * res.data.results.length);
     let selectedImage = res.data.results[randomNumber];
 
