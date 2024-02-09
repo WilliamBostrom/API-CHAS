@@ -4,7 +4,7 @@ const city = document.getElementById("city");
 const search = document.querySelector(".search");
 const btn = document.querySelector(".btn");
 const row = document.getElementById("tomorrow");
-const api_key = import.meta.env.VITE_WEATHER_KEY;
+const api_key = "28fd15358cdecbc1a1dfef367e71acef";
 let globalCoords = {
   lat: null,
   lng: null,
