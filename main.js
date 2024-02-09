@@ -1,9 +1,9 @@
-import "./scr/css/style.css";
-import "./scr/css/radio.css";
-import "./scr/css/general.css";
-import "./scr/css/queries.css";
+import "./src/css/style.css";
+import "./src/css/radio.css";
+import "./src/css/general.css";
+import "./src/css/queries.css";
 
-import "./scr/js/links.js";
-import "./scr/js/script.js";
-import "./scr/js/weather.js";
-import "./scr/js/radio.js";
+import "./src/js/links.js";
+import "./src/js/script.js";
+import "./src/js/weather.js";
+import "./src/js/radio.js";

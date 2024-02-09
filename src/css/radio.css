@@ -48,7 +48,7 @@
   margin: 0 auto;
   border-radius: 1.5rem;
   width: 95%;
-  background-image: url("/scr/img/displayimg.jpg");
+  background-image: url("/displayimg.jpg");
   background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;

@@ -79,7 +79,7 @@ function playRadio() {
   startpauseBtn.innerHTML = `
   <img
     class="pause-start-radio"
-    src="/scr/img/pause.svg"
+    src="/pause.svg"
     alt=""
   />
 `;
@@ -91,7 +91,7 @@ function pauseRadio() {
   isPlaying = false;
   mp3img.classList.remove("spinn-img");
   startpauseBtn.innerHTML = `
-    <img class="btn-start-radio" src="/scr/img/play.svg" alt="" />
+    <img class="btn-start-radio" src="/play.svg" alt="" />
  `;
 }
 //Tidigare radio
@@ -105,7 +105,7 @@ const prevStn = () => {
   startpauseBtn.innerHTML = `
   <img
     class="pause-start-radio"
-    src="/scr/img/play.svg"
+    src="/play.svg"
     alt=""
   />
 `;
@@ -123,7 +123,7 @@ const nextStn = () => {
   startpauseBtn.innerHTML = `
   <img
     class="pause-start-radio"
-    src="/scr/img/play.svg"
+    src="/play.svg"
     alt=""
   />
 `;

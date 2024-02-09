@@ -98,7 +98,7 @@ function displayFastLinks() {
     }" id="icons"/> <h3>${element.title}</h3></div></a>
     </div>
     <a class="card_delete_icon" data-index="${fastLinks.indexOf(element)}">
-    <img src="./scr/img/minus-circle.svg"/></a>
+    <img src="/minus-circle.svg"/></a>
     
   </button>`;
   });
